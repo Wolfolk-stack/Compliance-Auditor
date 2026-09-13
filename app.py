@@ -28,7 +28,7 @@ if st.button("Run Compliance Check"):
                     document_text += page.extract_text() + "\n"
 
                 # Initialize the Google Gemini AI Model
-                model = genai.GenerativeModel('gemini-1.5-flash')
+                model = genai.GenerativeModel('gemini-pro')
                 
                 # Tell the AI exactly what its job is
                 prompt = f"""
