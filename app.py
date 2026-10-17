@@ -99,7 +99,7 @@ with col_left:
 
 with col_right:
     st.subheader("3. Document Intake")
-    uploaded_file = st.file_uploader("Upload Draft SOP or Manual (PDF)", type=["pdf"])
+    uploaded_file = st.file_uploader("Upload Draft SOP or Manual (PDF)", type=["pdf", "jpg", "jpeg", "png"])
 
     audit_ready = bool(user_email and uploaded_file)
     
