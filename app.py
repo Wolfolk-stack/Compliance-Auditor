@@ -108,5 +108,20 @@ with col_right:
 
     if st.button("🚀 Run Compliance Check", disabled=not audit_ready, use_container_width=True):
         st.success("System ready to process document...")
-        # Your Gemini processing code will execute here
+        if uploaded_file is not None:
+    bytes_data = uploaded_file.getvalue()
+    if uploaded_file.name.endswith('.pdf'):
+        import pypdf
+        pdf_reader = pypdf.PdfReader(io.BytesIO(bytes_data))
+        text = ""
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+        response = genai.GenerativeModel('gemini-1.5-flash').generate_content(text)
+        st.write(response.text)
+    else:
+        import PIL.Image
+        img = PIL.Image.open(io.BytesIO(bytes_data))
+        response = genai.GenerativeModel('gemini-1.5-flash').generate_content(["Analyze this image for compliance:", img])
+        st.write(response.text)
+
           
